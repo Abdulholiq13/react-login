@@ -5,40 +5,21 @@ export const initialState = JSON.parse(localStorage.getItem("store")) || {
   token: null,
 };
 export const reducer = (state, action) => {
+  let memory = {};
   switch (action.type) {
-    case "INC":
-      return { ...state, son: state.son + action.payload };
-    case "TOGGLE_WISHLIST":
-      let index = state.wishlist.findIndex(
-        (item) => item.id === action.payload.id
-      );
-      let wishlistMemory = {};
-      if (index < 0) {
-        wishlistMemory = {
-          ...state,
-          wishlist: [...state.wishlist, action.payload],
-        };
-        localStorage.setItem("store", JSON.stringify(wishlistMemory));
-        return wishlistMemory;
-      } else {
-        wishlistMemory = {
-          ...state,
-          wishlist: state.wishlist.filter(
-            (item) => item.id !== action.payload.id
-          ),
-        };
-        localStorage.setItem("store", JSON.stringify(wishlistMemory));
-        return wishlistMemory;
-      }
-    case "REMOVE_CART":
-      return state;
-    case "RESET_CART":
-      return { ...state, cart: [] };
     case "LOGIN":
-      return { ...state, token: action.payload };
+      memory = { ...state, token: action.payload };
+      saveStorage(memory);
+      return memory;
     case "LOGOUT":
-      return { ...state, token: null };
+      memory = { ...state, token: null };
+      saveStorage(memory);
+      return memory;
     default:
       return state;
   }
 };
+
+function saveStorage(memory) {
+  localStorage.setItem("store", JSON.stringify(memory));
+}

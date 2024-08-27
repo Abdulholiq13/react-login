@@ -2,10 +2,12 @@ import { Button, Form, Input, message } from "antd";
 import axios from "@/api";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useStateValue } from "@/context";
 
 const LoginForm = ({ title }) => {
   const [loading, setLoading] = useState(false);
   const [messageApi, contextHolder] = message.useMessage();
+  const [state, dispatch] = useStateValue();
 
   const navitage = useNavigate();
 
@@ -16,7 +18,9 @@ const LoginForm = ({ title }) => {
     axios
       .post("/auth/login", values)
       .then((res) => {
-        messageApi.success("Login is success!"), navitage("/");
+        messageApi.success("Login is success!"),
+          navitage("/"),
+          dispatch({ type: "LOGIN", payload: res.data.token });
       })
       .catch((err) => {
         console.log(err), messageApi.error("Username or Password is incorrect");

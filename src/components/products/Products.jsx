@@ -15,7 +15,7 @@ const Products = ({ data, loading }) => {
                 src={product.images[0]}
                 alt=""
               />
-              <div className="group-hover:-z-[1] w-full h-full bg-[#00000020] z-30 absolute bottom-0 left-0"></div>
+              <div className="group-hover:-z-[1] w-full h-full bg-[#00000005] z-30 absolute bottom-0 left-0"></div>
             </div>
             <p className="group-hover:text-blue-400 transition-all duration-200 ease-in-out">
               {product.title}

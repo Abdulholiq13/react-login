@@ -1,9 +1,10 @@
 import { combineReducers, legacy_createStore } from "redux";
 import wishlist from "./wishlist";
+import token from "./token";
 
 const reducers = combineReducers({
   wishlist,
-  cart,
+  // cart,
   token,
 });
 

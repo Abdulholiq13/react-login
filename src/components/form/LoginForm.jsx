@@ -2,12 +2,12 @@ import { Button, Form, Input, message } from "antd";
 import axios from "@/api";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useStateValue } from "@/context";
+import { useDispatch, useSelector } from "react-redux";
 
 const LoginForm = ({ title }) => {
   const [loading, setLoading] = useState(false);
   const [messageApi, contextHolder] = message.useMessage();
-  const [state, dispatch] = useStateValue();
+  const dispatch = useDispatch();
 
   const navitage = useNavigate();
 

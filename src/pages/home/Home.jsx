@@ -1,14 +1,13 @@
 import Products from "@/components/products/Products";
-import sound from "@/../public/sound/mixkit-select-click-1109.wav";
 import { useFetch } from "@/hooks/useFetch";
 import { Pagination, Alert, Button, Space } from "antd";
 import React, { useState } from "react";
-import { useStateValue } from "@/context";
+import { useDispatch } from "react-redux";
 
 const Home = () => {
   const [skip, setSkip] = useState(1);
-  const [limit, setLimit] = useState(10);
-  const [state, dispatch] = useStateValue();
+  const [limit, setLimit] = useState(8);
+  const dispatch = useDispatch();
   const { data, loading } = useFetch(
     "/products",
     { limit, skip: (skip - 1) * limit },
@@ -18,10 +17,6 @@ const Home = () => {
   const hadleChange = (current, pageSize) => {
     setSkip(current);
     setLimit(pageSize);
-  };
-
-  const handleButtonClick = () => {
-    new Audio(sound).play();
   };
 
   return (
@@ -43,8 +38,8 @@ const Home = () => {
         }
         closable
       />
-      <h2 className="text-xl mb-3 text-center font-sans font-semibold mt-3">
-        Home
+      <h2 className="text-xl mb-3 text-left font-sans font-semibold mt-3">
+        Products
       </h2>
 
       <Products data={data?.products} loading={loading} />
@@ -59,11 +54,8 @@ const Home = () => {
       />
 
       <button
-        className="fixed right-5 top-2 p-2 px-4 font-medium text-sm text-red-600 border border-gray-400 hover: bg-gray-200 rounded-md"
-        onClick={() => (
-          dispatch({ type: "LOGOUT", payload: data?.token }),
-          handleButtonClick()
-        )}
+        className="fixed left-5 bottom-2 p-2 px-4 font-medium text-sm text-red-600 border border-gray-400 hover: bg-gray-200 rounded-md"
+        onClick={() => dispatch({ type: "LOGOUT", payload: data?.token })}
       >
         Log Out
       </button>

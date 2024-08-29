@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { IoIosHeartEmpty } from "react-icons/io";
+import { IoIosHeartEmpty, IoIosCart } from "react-icons/io";
 
 const Header = () => {
   return (
@@ -8,9 +8,14 @@ const Header = () => {
         DummyProducts
       </NavLink>
 
-      <nav>
+      <nav className="flex items-center gap-3">
         <NavLink to={"/wishlist"} className={"flex items-center gap-2"}>
           <IoIosHeartEmpty className="text-2xl" />
+          Wishlist
+        </NavLink>
+
+        <NavLink to={"/cart"} className={"flex items-center gap-2"}>
+          <IoIosCart className="text-2xl" />
           Wishlist
         </NavLink>
       </nav>

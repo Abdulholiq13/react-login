@@ -4,6 +4,7 @@ import Login from "./pages/login/Login";
 import Auth from "./pages/auth/Auth";
 import Wishlist from "./pages/wishlist/Wishlist";
 import Layout from "./pages/layout/Layout";
+import Cart from "./pages/cart/Cart";
 
 function App() {
   return (
@@ -12,8 +13,9 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/" element={<Layout />}>
           <Route path="/" element={<Auth />}>
-            <Route path="" element={<Home />} />
+            <Route index element={<Home />} />
             <Route path="wishlist" element={<Wishlist />} />
+            <Route path="cart" element={<Cart />} />
           </Route>
         </Route>
       </Routes>

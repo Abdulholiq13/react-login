@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { IoIosHeartEmpty, IoIosHeart } from "react-icons/io";
+import { IoIosHeartEmpty, IoIosHeart, IoIosCart } from "react-icons/io";
 
 const Products = ({ data, loading }) => {
   const dispatch = useDispatch();
@@ -30,9 +30,19 @@ const Products = ({ data, loading }) => {
                 )}
               </button>
             </div>
-            <p className="group-hover:text-blue-400 transition-all duration-200 ease-in-out">
-              {product.title}
-            </p>
+            <div className="flex items-center justify-between">
+              <p className="group-hover:text-blue-400 transition-all duration-200 ease-in-out">
+                {product.title}
+              </p>
+              <button
+                className=""
+                onClick={() =>
+                  dispatch({ type: "TOGGLE_CART", payload: product })
+                }
+              >
+                <IoIosCart className="text-2xl text-green-" />
+              </button>
+            </div>
           </div>
         );
       })}
